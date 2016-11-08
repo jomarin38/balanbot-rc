@@ -220,6 +220,7 @@ void PWM_Calculate()
   
   float ftmp = 0;
   ftmp = (Speed_L + Speed_R) * 0.5;
+// Partie entiere
   if( ftmp > 0)
     Position_AVG = ftmp +0.5;  
    else
@@ -468,11 +469,15 @@ void Init()
 */
 
 
+// Agit sur la stabilisation angulaire
   KA_P = 35.0;
-  KA_D = 3.5;
-  KP_P = 30;
-  KP_I = 0.34;
   K_Base = 8;
+// Est applique sur la vitesse de déplacement
+  KP_P = 30;
+// Est aplique sur Gyro_Car
+  KA_D = 3.5;
+// Est applique sur la commande RC
+  KP_I = 0.34;
 
 
 /*

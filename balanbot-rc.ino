@@ -236,13 +236,13 @@ void PWM_Calculate()
   Position_Add += Position_AVG_Filter;  //position
   //Serial.print(Speed_Need);  Serial.print("\t"); Serial.println(Turn_Need);
   
-  Position_Add += Speed_Need;  //
+  Position_Add = Speed_Need;  //
   
   //Position_Add = constrain(Position_Add, -800, 800);
   Position_Add = constrain(Position_Add, -1200, 1200);
 //   Serial.print(Position_AVG_Filter);  Serial.print("\t"); Serial.println(Position_Add);
 //Serial.print((Angle_Car-2 + K_Base)* KA_P);  Serial.print("\t");
-  pwm =  (Angle_Car-5 + K_Base)* KA_P   //P
+  pwm =  (Angle_Car)* KA_P   //P
       + Gyro_Car * KA_D //D
       +  Position_Add * KP_I    //I
       +  Position_AVG_Filter * KP_P; //P
@@ -471,7 +471,7 @@ void Init()
 
 // Agit sur la stabilisation angulaire
   KA_P = 35.0;
-  K_Base = 8;
+  K_Base = 1;
 // Est applique sur la vitesse de déplacement
   KP_P = 30;
 // Est aplique sur Gyro_Car
@@ -764,7 +764,7 @@ void calcLeftRight()
 
 
 #define  RC_ERROR 1
-#define RC_CAR_SPEED  20
+#define RC_CAR_SPEED  100
 int RCTurnSpeed = 160;
 void ProcessRC()
 {
